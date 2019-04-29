@@ -1,0 +1,17 @@
+<div class="row component-header">
+  <i class="fab fa-angellist fa-1x"></i>
+  TODO - Personal list.
+</div>
+
+<hr>
+
+<div  class="row align-items-center justify-content-center new-todo-container">
+  <button type="button" class="btn-primary" (click)="onCreateNew(todo_name)" >
+    <i class="fas fa-cart-plus"></i></button>
+  <input [tabindex]="1"  type="text" value="" #todo_name placeholder="Your Todo..." (keyup.enter)="onEnter(todo_name)">
+</div>
+
+<div class="container" *ngFor="let todo of (todos$ | async)">
+  <todo-item [todo]="todo" (deleteTodo)="onDeleteTodo($event)" (saveTodo)="onSaveTodo($event)">
+  </todo-item>
+</div>

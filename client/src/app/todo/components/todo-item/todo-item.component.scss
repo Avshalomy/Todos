@@ -1,0 +1,34 @@
+.todo-item {
+    margin-bottom: -5px;
+    width: 400px;
+}
+
+input {
+  padding-left: 2px;
+  width: 100%;
+  border: 1px solid red;
+  margin-bottom: 12px;
+  
+}
+
+.todo_name_text:hover {
+  color: navy;
+  font-weight: bold;
+}
+
+button {
+    margin-left: 3px;
+}
+
+.btn-save {
+  border: none; 
+  color: green;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}

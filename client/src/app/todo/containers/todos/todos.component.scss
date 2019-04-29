@@ -1,0 +1,25 @@
+.component-header {
+    padding-top: 30px;
+    color: yellowgreen;
+    margin-left: 0 !important;
+
+    i {
+        line-height: unset;
+        margin-right: 3px;
+    }
+}
+
+.new-todo-container {
+    margin-bottom: 3rem;
+
+    input {
+        width:300px;
+        padding-left: 2px;
+        margin-left: 2px;
+        vertical-align: baseline;
+    }
+
+    button {
+        width: 60px;
+    }
+}

@@ -1,0 +1,35 @@
+<div class="row  todo-item">
+
+  <div class="col-sm" [hidden]="!edit_mode" >
+    <input #w_input type="text" 
+        [value]="todo.name" 
+        (blur)="onBlur(w_input)" 
+        (keyup)="onKeyUp($event)" 
+        (keyup.enter)="save()"  >
+  </div>
+
+  <div *ngIf="!edit_mode" 
+    class="col-sm todo_name_text" 
+    (click)="switch2EditMode(w_input)"  >
+    <p class="overflow-ellipsis">{{todo.name}}</p>
+  </div>
+
+  <div class="col-sm btns">
+    
+    <button 
+      type="button" 
+      class="btn btn-sm btn-save" 
+      (click)="save()"
+      [disabled]="todo.name === w_input.value"  >
+      <i class="fas fa-save"></i>
+    </button>
+
+    <button  
+      type="button" style="border: none"
+      class="btn btn-outline-danger btn-sm"
+      (click)="remove(todo.id)"  >
+      <i class="fas fa-trash"></i>
+    </button>
+  </div>
+
+</div>
