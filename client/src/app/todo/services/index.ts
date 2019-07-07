@@ -1,2 +1,3 @@
 import { TodosService } from './todos.service';
-export const services: any[] = [TodosService];
+import { PiperService } from './piper.service';
+export const services: any[] = [TodosService, PiperService];

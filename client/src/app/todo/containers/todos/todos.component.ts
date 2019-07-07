@@ -1,46 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable }        from 'rxjs';
-import { Todo }           from '../../models/todo.model';
-import { Store }             from '@ngrx/store';
+import { PiperService }      from '../../services/piper.service';
 
-import * as fromStore        from '../../store'
 
 @Component({
-  selector: 'app-todos',
+  selector:    'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  styleUrls: [ './todos.component.scss'],
+  providers: [ PiperService]
 })
 export class TodosComponent implements OnInit {
-  todos$: Observable<Todo[]>;
 
-  constructor(private store: Store<fromStore.FmRootState>) { }
+  constructor(public piperService: PiperService) {}
 
   ngOnInit() {
-    this.todos$ = this.store.select(fromStore.getTodos);
-    this.store.dispatch(new fromStore.LoadTodos());
+    this.piperService.start();
   }
 
-  onCreateNew(todo: HTMLInputElement) {
+  onCreateNew(todo: string) {
     this.createNew(todo);
   }
 
-  onEnter(todo: HTMLInputElement) {
+  onEnter(todo: string) {
     this.createNew(todo);
   }
 
-  private createNew(todo: HTMLInputElement) {
-    todo.value.trim();
-    if ( todo.value.length === 0 ) return;
-    this.store.dispatch(new fromStore.CreateNewTodo(todo.value));
-    todo.value = "";
-  }
-
-  onDeleteTodo(id: string) {
-    this.store.dispatch(new fromStore.DeleteTodo(id));
-  }
-
-  onSaveTodo(todo: Todo) {
-    this.store.dispatch(new fromStore.UpdateTodo(todo));
+  private createNew(todo: string) {
+    todo.trim();
+    if ( todo.length === 0 ) return;
+    this.piperService.createNewTodo(todo)
+    todo = "";
   }
 
 }

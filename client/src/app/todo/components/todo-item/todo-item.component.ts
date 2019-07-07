@@ -1,18 +1,18 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Todo } from '../../models/todo.model';
+import { Component, Input } from '@angular/core';
+import { PiperService }     from '../../services/piper.service';
+import { Todo }             from '../../models/todo.model';
+
 
 @Component({
-  selector: 'todo-item',
+  selector:    'todo-item',
   templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.scss']
+  styleUrls: [ './todo-item.component.scss']
 })
 export class TodoItemComponent {
 
   @Input() todo: Todo;
-  @Output() deleteTodo: EventEmitter<string> = new EventEmitter();
-  @Output() saveTodo:   EventEmitter<Todo> = new EventEmitter();
 
-  constructor() { }
+  constructor(public piperService: PiperService) { }
 
   edit_mode: boolean = false;
   todo_new_name: string = "";
@@ -35,12 +35,12 @@ export class TodoItemComponent {
   }
 
   remove(id: string) {
-    this.deleteTodo.emit(id);
+    this.piperService.deleteTodo(id);
   }
 
   save() {
     if (this.todo_new_name === '') return;
-    this.saveTodo.emit({id: this.todo.id, name: this.todo_new_name});
+    this.piperService.saveTodo({id: this.todo.id, name: this.todo_new_name});
     this.todo_new_name = '';
   }
 

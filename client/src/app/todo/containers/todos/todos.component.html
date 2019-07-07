@@ -6,12 +6,11 @@
 <hr>
 
 <div  class="row align-items-center justify-content-center new-todo-container">
-  <button type="button" class="btn-primary" (click)="onCreateNew(todo_name)" >
+  <button type="button" class="btn-primary" (click)="onCreateNew(todo_name.value)" >
     <i class="fas fa-cart-plus"></i></button>
-  <input [tabindex]="1"  type="text" value="" #todo_name placeholder="Your Todo..." (keyup.enter)="onEnter(todo_name)">
+  <input [tabindex]="1"  type="text" value="" #todo_name placeholder="Your Todo..." (keyup.enter)="onEnter(todo_name.value)">
 </div>
 
-<div class="container" *ngFor="let todo of (todos$ | async)">
-  <todo-item [todo]="todo" (deleteTodo)="onDeleteTodo($event)" (saveTodo)="onSaveTodo($event)">
-  </todo-item>
+<div class="container" *ngFor="let todo of (piperService.todos$ | async)">
+  <todo-item [todo]="todo"></todo-item>
 </div>
